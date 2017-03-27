@@ -1,3 +1,4 @@
+import router from '../router'
 import axios from 'axios'
 
 let api = axios.create({
@@ -11,6 +12,9 @@ let state = {
   user: {},
   myVaults: {},
   myKeeps: {},
+  activeAdmins: [],
+  loggedInUser: {},
+
   //Dummy Data
   keeps: [{
     title: 'Learn to Draw',
@@ -73,6 +77,36 @@ export default {
   state,
   // ACTIONS ARE RESPONSIBLE FOR MANAGING ALL ASYNC REQUESTS
   actions: {
+
+           //REGISTER - LOGIN - LOGOUT - AUTHENTICATION
+        register(body) {
+            api.post('register', body)
+                .then(res => {
+                    state.activeUser = res.data.data
+                    state.activeCustomer = res.data.data
+
+                }).catch(handleError)
+        },
+        logIn(user) {
+            api.post('login', user).then(res => {
+                state.loggedInData = res.data
+                if (res.data.data.admin) {
+                    state.loggedInUser = res.data.data
+                    return router.push('/Dashboard')
+                } else if (!res.data.data.admin) {
+                    Materialize.toast('You do not have Administrative Permissions', 6000)
+                }
+            }).catch(err => {
+                if (state.loggedInData.error == "Invalid Email or Password") {
+                    Materialize.toast(state.loggedInData.error, 6000)
+                } else {
+                    Materialize.toast("Must Provide Email and Password", 6000)
+                    Materialize.toast("You may need to Register", 4000)
+                }
+                // If you need to call a function from a component use below method
+                // router.getMatchedComponents('/AdminLogin')[0].methods.afterLogIn(state.loggedInData)
+            }, handleError)
+        },
   }
 
 }
