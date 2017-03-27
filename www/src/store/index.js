@@ -92,7 +92,7 @@ export default {
                 state.loggedInData = res.data
                 if (res.data.data.admin) {
                     state.loggedInUser = res.data.data
-                    return router.push('/Dashboard')
+                    return router.push('/dashboard')
                 } else if (!res.data.data.admin) {
                     Materialize.toast('You do not have Administrative Permissions', 6000)
                 }
