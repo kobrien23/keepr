@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    
+    <router-link :to="'/vault'">Vault</router-link>
     <router-link :to="'/'">
         <img src="./assets/logo.jpg">
     </router-link>
-  
+    
+      <router-link :to="'/dashboard'">Dashboard  </router-link>
+
     <router-view></router-view>
   </div>
 </template>
@@ -12,6 +14,9 @@
 <script>
 export default {
   name: 'app',
+  mounted: function () {
+              this.$root.$data.store.actions.initAuth()
+            }
 }
 </script>
 

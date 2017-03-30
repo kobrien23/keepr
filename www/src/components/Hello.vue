@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
     <h1>Welcome to KO Keepr</h1>
-    <p>Get Started</p>
+    
+    <p> </p>
     <ul>
       <li><router-link to='/login'>Login</router-link></li>
       <li><router-link to='/register'>Register</router-link></li>

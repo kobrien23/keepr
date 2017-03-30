@@ -36,23 +36,35 @@ export default {
 
     },
     methods: {
-        logIn(email, pw) {
-               var user = {
-                    email: email,
-                    password: pw
-                }
-                this.$root.$data.store.actions.logIn(user)
-            },
-        },
-        computed: {
-            admin() {
-                return this.$root.$data.store.state.activeAdmin
-            },
-            loggedInData() {
-                return this.$root.$data.store.state.loggedInData
 
-            }
+         
+      register: function(){
+        var body = {
+            email: this.email,
+            password: this.password,
+            name: this.name
         }
+          this.$root.$data.store.actions.register(body)
+      },
+  
+        // logIn(email, pw) {
+        //        var user = {
+        //             email: email,
+        //             password: pw
+        //         }
+        //         this.$root.$data.store.actions.logIn(user)
+        //     },
+        },
+
+        // computed: {
+        //     admin() {
+        //         return this.$root.$data.store.state.activeAdmin
+        //     },
+        //     loggedInData() {
+        //         return this.$root.$data.store.state.loggedInData
+
+        //     }
+        // }
 }
 
 

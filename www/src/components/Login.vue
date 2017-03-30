@@ -30,8 +30,12 @@ export default {
     },
     methods: {
       login: function () {
+           var body = {
+            email: this.email,
+            password: this.password,
+        }
         console.log("in login user in the Vue component.")
-        this.$root.$data.store.actions.loginUser(this.email, this.password)
+        this.$root.$data.store.actions.logIn(body)
       }
     }
 }

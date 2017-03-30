@@ -1,3 +1,4 @@
+import { models } from '../config/constants'
 let mongoose = require('mongoose')
 let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
@@ -6,9 +7,10 @@ const SALT_FACTOR = 10
 
 let schema = new Schema({
   name: { type: String, required: true },
-  email: { type: String, required: true, unique: true, dropDups: true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  created: { type: Number, required: true, default: Date.now() }
+  created: { type: Number, required: true, default: Date.now() },
+  // vaults: [{type: ObjectId, ref: models.vault.name}]
 })
 
 
@@ -41,3 +43,5 @@ schema.methods.validatePassword = function (password) {
 };
 
 module.exports = mongoose.model('User', schema)
+
+// 58d96c5b70d0f02b4c6c4389

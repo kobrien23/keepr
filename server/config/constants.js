@@ -18,6 +18,12 @@ const models = {
     endpoint: 'keep',
     preventDefaultApi: false,
     // useCustomRoutes: true
+     },
+  vault:{
+    name: 'vault',
+    endpoint: 'vault',
+    preventDefaultApi: false,
+    useCustomRoutes: true
      }
 }
 
