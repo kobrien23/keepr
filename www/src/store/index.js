@@ -141,7 +141,7 @@ export default {
 
         getPublicKeeps(){
           console.log('getting public keeps')
-            api.get('http://localhost:3000/api/keep').then(res => {
+            api.get('http://localhost:3000/api/publicKeeps').then(res => {
               console.log('got public keeps', res.data)
               state.publicKeeps = res.data.data
               console.log('public keeps   ', state.publicKeeps)
@@ -156,9 +156,14 @@ export default {
             .then(res => {
               state.activeKeep=res.data.data
               console.log('id',state.activeKeep._id)
+              if(state.activeKeep.public==false){
               this.updateActiveVault(state.activeVault)
+              }
+              if(state.activeKeep.public==true){
               this.getPublicKeeps()
-
+                return router.push('/dashboard')
+              } 
+                return router.push('/PrivateVault')
 
             })
              .catch(handleError)
@@ -174,7 +179,11 @@ export default {
           state.activeVault.keeps.push(state.activeKeep._id)
           api.put('http://localhost:3000/api/vault/' + vault._id, state.activeVault)
           .then(res => {
-            console.log("updated server")
+            console.log("updated server", this.activeKeep)
+            if(this.activeKeep.public==true){
+                return router.push('/dashboard')
+              } 
+                return router.push('/PrivateVault')
           })
           .catch(handleError)
         },
@@ -216,7 +225,7 @@ export default {
         },
 
         getPrivateKeeps(){
-          console.log('getting private keeps', state.activeVault._id)
+          console.log('getting private keeps from getPrivateKeeps', state.activeVault._id)
 
             api.get('http://localhost:3000/api/privatevault/'+ state.activeVault._id)
             .then(res => {
@@ -247,7 +256,31 @@ export default {
           console.log("s.ak", state.activeKeep)
           this.getPublicKeeps()
       })
-      },
+    },
+          deletePrivateKeep(keep){
+        console.log("deleting keep object", keep)
+        api.delete('http://localhost:3000/api/keep/'+ keep._id, keep)
+        .then(res => {
+          console.log("delete",res.data.data)
+           state.activeKeep=keep
+          console.log("s.ak", state.activeKeep)
+          this.getPrivateKeeps()
+      })
+    },
+      //  returnPrivateKeeps(){
+      //     return state.privateKeeps;
+      //   },
+
+      //   getPrivateKeeps(){
+      //     console.log('getting private keeps')
+      //       api.get('http://localhost:3000/api/vault/' + state.activeVault._id)
+      //       .then(res => {
+      //         console.log('got public keeps', res.data)
+      //         state.publicKeeps = res.data.data
+      //         console.log('public keeps   ', state.privateKeeps)
+      //         this.returnPublicKeeps()
+      //       }).catch(handleError)
+      //   },
 
 
 

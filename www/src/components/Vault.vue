@@ -3,16 +3,16 @@
 <h3> {{msg}} "{{name}}"</h3>
   
 
-
+<div class="container">
         <div class="row">
           <div class="col s12 vault">
   <h5>Click on the vault name to go to the private vault</h5>
             <ul >
-              <li class="card grow" v-for="vault in myVaults" @click="openClicked(vault)" v-model='vault.name'>>>>{{vault.name}} >>>> {{vault.keeps.length}}</li>
+              <li class=" grow" v-for="vault in myVaults" @click="openClicked(vault)" v-model='vault.name'>{{vault.name}} {{vault.keeps.length}}</li>
             </ul>
           </div>
         </div>
-
+</div>
 <router-link :to="'/AddNewKeep'">
   <p>Add new keep</p>
 </router-link>

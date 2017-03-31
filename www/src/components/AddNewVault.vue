@@ -2,12 +2,12 @@
 
     <div class="container">
 
-    <form class="col s12">
+    <form class="col s12" @submit.prevent="makeNewVault()">
       <div class="row">
         <div class="input-field col s6 offset-s3 offset-s3">
           <input v-model="newVault" type="text" name="addNewVault" placeholder="New vault name" class="validate">
         <!--  <input v-on="newKeepImg" type="file"  > -->
-           <button @click="makeNewVault()" class="waves-effect waves-light btn ">Submit New Vault</button>
+           <button  class="waves-effect waves-light btn ">Submit New Vault</button>
         </div>
       </div>
 </form>

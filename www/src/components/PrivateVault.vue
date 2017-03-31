@@ -4,7 +4,13 @@
 
 <h5>{{activeVault.name}}</h5>
      
+<router-link :to="'/AddNewKeep'">
+  <p>Add new keep</p>
+</router-link>
 
+<router-link :to="'/AddNewVault'">
+  <p>Add new Vault</p>
+</router-link>
 
         <div class="privateKeeps card grow" v-for="keep in keeps" >
             <div>{{keep.title}}</div>
@@ -13,6 +19,7 @@
             {{keep.likes}}
             </div>
             <img v-bind:src="keep.imageUrl" width="75%" />
+               <button v-on:click="deleteKeep(keep)">Get rid of it</button>
         </div>
 
 
@@ -55,13 +62,13 @@
    },
    deleteKeep(keep){
      console.log(keep.title)
-     this.$root.$data.store.actions.deleteKeep(keep)
+     this.$root.$data.store.actions.deletePrivateKeep(keep)
    }
      }
   }
   </script>
 
-<style> 
+<style scoped> 
 
 .grow{
     margin: 0px;

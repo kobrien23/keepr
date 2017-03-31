@@ -1,13 +1,23 @@
 <template>
   <div id="app">
-    <router-link :to="'/vault'">Vault</router-link>
-    <router-link :to="'/'">
-        <img src="./assets/logo.jpg">
-    </router-link>
+ <nav>
+    <div class="nav-wrapper">
+      <a href="" class="brand-logo center"> <img src="./assets/logo.jpg"  width="75%"></a>
+      <ul id="nav-mobile" class="right">
+     
+ <li>   <router-link class="navigate" :to="'/vault'">Vault</router-link> </li>
     
-      <router-link :to="'/dashboard'">Dashboard  </router-link>
+     <li>     <router-link class="navigate" :to="'/dashboard'">Dashboard  </router-link> </li>
+    
+       
+      </ul>
+    </div>
+  </nav>
+
+
 
     <router-view></router-view>
+
   </div>
 </template>
 
@@ -20,7 +30,7 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -28,5 +38,21 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+nav{
+  height: 120px;
+}
+
+.brand-logo{
+  
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.navigate{
+  color: white;
+  font-size: 26px;
+  margin-top: 25px;
+  margin-right: 15px;
 }
 </style>

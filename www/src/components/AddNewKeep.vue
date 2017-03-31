@@ -4,17 +4,20 @@
 
     <form @submit.prevent="makeNewKeep">
         <!--<div class="input-field col s6 offset-s3 offset-s3">-->
+<div class="card">
           <input v-model="newKeepTitle" type="text" name="addNewKeep" placeholder="New keep title" class="validate">
-      <input v-model="newKeepImg" type="text" name="newKeepImg" >
+      <input v-model="newKeepImg" type="text" name="newKeepImg" placeholder="New keep image url" >
      <input type="checkbox" id="private" value="true" v-model="public">
-      <label for="private">Make Private</label>
+      <label for="private">Check to Make Public/ UnCheck to make Private</label>
       <br>
       <br>
-
-      <div class="row">
-          <div class="col s3 grow">
+     </div>
+<br>
+      <div class="row" display="center">
+          <div class="col s6 grow">
+          <a>Your list of vaults</a>
             <ul >
-              <li class="card grow" v-for="vault in myVaults" @click.capture="A_Clicked(vault)" v-model='vault.name'>{{vault.name}} ></li>
+              <li class="card grow" v-for="vault in myVaults" @click.capture="A_Clicked(vault)" v-model='vault.name'>{{vault.name}}</li>
             </ul>
           </div>
        </div>
@@ -49,7 +52,7 @@
      myVaults: this.$root.store.state.myVaults,
      vaultId: '',
      keepId: '',
-     public: '',
+     public: true,
      activeKeep: this.$root.$data.store.state.activeKeep,
      activeVault: {}
      }
@@ -82,21 +85,22 @@
       addKeepToVault() {
           console.log(this.activeKeep._id, "activekeeps")
       },
-      reloadPublic(){
-         this.public= ''
-      }
+      // reloadPublic(){
+      //    this.public= ''
+      // }
     },
 
 }  
  
 
 </script>
-<style> 
+<style scoped> 
 
 .grow{
     margin: 0px;
     font-size: 20px;
     border: 1px solid grey;
+    display: center;
 }
 
 </style>

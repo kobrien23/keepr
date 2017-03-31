@@ -2,23 +2,31 @@
     <div class="dashboard">
         <h3> {{msg}} </h3>
 
+<router-link :to="'/AddNewKeep'">
+  <p>Add new keep</p>
+</router-link>
+
+<router-link :to="'/AddNewVault'">
+  <p>Add new Vault</p>
+</router-link>
 
 
-
-        <div class="publicKeeps" v-for="keep in keeps" >
-<div class="card">
+<div class="container">
+<div class="row  ">
+     <div class="publicKeeps  flexbx" v-for="keep in keeps" >
+       <div class="card boxing col s3">
             <div>{{keep.title}}</div>
-            <div> click to like:   
-            <i class="material-icons" @click="addLikeCount(keep)">thumb_up</i>
-            {{keep.likes}}
-            </div>
-            <img :src="keep.imageUrl"  width="75%"/>
+              <div> click to like:   
+              <i class="material-icons" @click="addLikeCount(keep)">thumb_up</i>
+              {{keep.likes}}
+              </div>
+              <img :src="keep.imageUrl"  width="75%"/>
              <button v-on:click="deleteKeep(keep)">Get rid of it</button>
-        </div>
-</div>
-
+            </div>
+       </div>
     </div>
-
+</div>
+  </div>
 
 </template>
 
@@ -70,3 +78,14 @@
 
 </script>
 
+<style scoped> 
+
+
+
+
+.boxing{
+ 
+  height: 250px;
+}
+
+</style>

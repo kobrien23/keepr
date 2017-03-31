@@ -1,13 +1,20 @@
 <template>
   <div class="hello">
-    <h1>Welcome to KO Keepr</h1>
+
+  
+  <div class="card">
+  <div class="col s6">
+    <h1 class="blue-text text-darken-2">Welcome to KO Keepr</h1>
     
     <p> </p>
     <ul>
-      <li><router-link to='/login'>Login</router-link></li>
-      <li><router-link to='/register'>Register</router-link></li>
+      <li><router-link class="login blue-text text-darken-2" to='/login'>Login</router-link></li>
+      <li><router-link class="login blue-text text-darken-2" to='/register'>Register</router-link></li>
     </ul>
     <hr>
+   </div>
+   </div>
+    
   </div>
 </template>
 
@@ -40,5 +47,9 @@ li {
 
 a {
   color: #42b983;
+}
+.login{
+  color: blue;
+  font-size: 26px;
 }
 </style>
